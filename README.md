@@ -1,12 +1,12 @@
-# alpine-pandoc-ja [![Docker Automated build](https://img.shields.io/docker/automated/k1low/alpine-pandoc-ja.svg?style=flat-square)](https://hub.docker.com/r/k1low/alpine-pandoc-ja/) [![Docker Automated build](https://img.shields.io/docker/build/k1low/alpine-pandoc-ja.svg?style=flat-square)](https://hub.docker.com/r/k1low/alpine-pandoc-ja/builds/) [![GitHub release](https://img.shields.io/github/release/k1low/docker-alpine-pandoc-ja.svg?style=flat-square)](https://github.com/k1LoW/docker-alpine-pandoc-ja/releases)
+# alpine-pandoc-cn
 
-Pandoc for Japanese based on Alpine Linux.
+Pandoc for Chinese based on Alpine Linux.
 
 ## Usage
 
 ```sh
-$ docker pull k1low/alpine-pandoc-ja
-$ docker run -it --rm -v `pwd`:/workspace k1low/alpine-pandoc-ja pandoc input.md -f markdown -o output.pdf -V documentclass=ltjarticle -V classoption=a4j -V geometry:margin=1in --pdf-engine=lualatex
+$ docker pull liujian3lj7/alpine-pandoc-cn
+$ docker run -it --rm -v `pwd`:/workspace liujian3lj7/alpine-pandoc-cn pandoc input.md -f markdown -o output.pdf -V documentclass=ltjarticle -V classoption=a4j -V geometry:margin=1in --pdf-engine=lualatex
 ```
 
 ### Use Template
@@ -19,5 +19,4 @@ $ docker run -it --rm -v `pwd`:/workspace -v `pwd`/templates:/root/.pandoc/templ
 
 ## Reference Dockerfile
 
-- [portown/alpine-pandoc](https://github.com/portown/alpine-pandoc)
-- [paperist/alpine-texlive-ja](https://github.com/Paperist/docker-alpine-texlive-ja)
+- [k1LoW/docker-alpine-pandoc-ja](https://github.com/k1LoW/docker-alpine-pandoc-ja)
