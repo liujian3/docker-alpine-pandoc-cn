@@ -3,12 +3,12 @@ FROM frolvlad/alpine-glibc
 LABEL description="Pandoc for Chinese based on Alpine Linux."
 
 # Install Tex Live
-ENV TEXLIVE_VERSION 2022
-ENV PATH /usr/local/texlive/$TEXLIVE_VERSION/bin/x86_64-linuxmusl:$PATH
+ENV TL_VERSION 2022
+ENV PATH /usr/local/texlive/$TL_VERSION/bin/x86_64-linuxmusl:$PATH
 
 RUN apk --no-cache add perl wget xz tar fontconfig-dev \
  && mkdir -p /tmp/src/install-tl-unx \
- && wget -qO- ftp://tug.org/texlive/historic/$TEXLIVE_VERSION/install-tl-unx.tar.gz | \
+ && wget -qO- ftp://tug.org/texlive/historic/$TL_VERSION/install-tl-unx.tar.gz | \
     tar -xz -C /tmp/src/install-tl-unx --strip-components=1 \
  && printf "%s\n" \
       "selected_scheme scheme-basic" \
