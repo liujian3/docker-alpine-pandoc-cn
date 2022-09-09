@@ -1,10 +1,9 @@
 FROM frolvlad/alpine-glibc
 
-LABEL maintainer="k1LoW <k1lowxb@gmail.com>" \
-      description="Pandoc for Japanese based on Alpine Linux."
+LABEL description="Pandoc for Chinese based on Alpine Linux."
 
 # Install Tex Live
-ENV TEXLIVE_VERSION 2019
+ENV TEXLIVE_VERSION 2022
 ENV PATH /usr/local/texlive/$TEXLIVE_VERSION/bin/x86_64-linuxmusl:$PATH
 
 RUN apk --no-cache add perl wget xz tar fontconfig-dev \
@@ -23,16 +22,16 @@ RUN apk --no-cache add perl wget xz tar fontconfig-dev \
  && tlmgr install \
       collection-basic collection-latex \
       collection-latexrecommended collection-latexextra \
-      collection-fontsrecommended collection-langjapanese latexmk \
+      collection-fontsrecommended collection-langchinese latexmk \
       luatexbase ctablestack fontspec luaotfload lualatex-math \
       sourcesanspro sourcecodepro \
  && rm -Rf /tmp/src \
  && apk --no-cache del xz tar fontconfig-dev
 
 # Install Pandoc
-ENV PANDOC_VERSION 2.7.2
+ENV PANDOC_VERSION 2.19.2
 ENV PANDOC_DOWNLOAD_URL https://github.com/jgm/pandoc/archive/$PANDOC_VERSION.tar.gz
-ENV PANDOC_DOWNLOAD_SHA512 4b3a21cf76777ed269bf7c13fd09ab1d5c97ed21ec9f02bff95fd3641ac9d52bde19a6e2ffb325378e611dfbe66b8b00769d8510a8b2fb1dfda8062d79b12233
+#ENV PANDOC_DOWNLOAD_SHA512 4b3a21cf76777ed269bf7c13fd09ab1d5c97ed21ec9f02bff95fd3641ac9d52bde19a6e2ffb325378e611dfbe66b8b00769d8510a8b2fb1dfda8062d79b12233
 ENV PANDOC_ROOT /usr/local/pandoc
 ENV PATH $PATH:$PANDOC_ROOT/bin
 
@@ -49,7 +48,7 @@ RUN apk add --no-cache \
     curl \
  && mkdir -p /pandoc-build && cd /pandoc-build \
  && curl -fsSL "$PANDOC_DOWNLOAD_URL" -o pandoc.tar.gz \
- && echo "$PANDOC_DOWNLOAD_SHA512  pandoc.tar.gz" | sha512sum -c - \
+ #&& echo "$PANDOC_DOWNLOAD_SHA512  pandoc.tar.gz" | sha512sum -c - \
  && tar -xzf pandoc.tar.gz && rm -f pandoc.tar.gz \
  && ( cd pandoc-$PANDOC_VERSION && cabal update && cabal install --only-dependencies \
     && cabal configure --prefix=$PANDOC_ROOT \
